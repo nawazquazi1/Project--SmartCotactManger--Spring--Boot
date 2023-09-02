@@ -28,6 +28,9 @@ import java.security.Principal;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * @author im_na
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -40,12 +43,7 @@ public class UserController {
 
 	@Autowired
 	private ContactRepository contactRepository;
-	
-	
-	
-	
 
-	
 
 	// method for adding common data to response
 
@@ -57,7 +55,7 @@ public class UserController {
 		// get the user using usernamne(Email)
 
 		User user = userRepository.getUserByUserName(userName);
-		System.out.println("USER " + user);
+		System.out.println("USER hg " + user);
 		model.addAttribute("user", user);
 
 	}
@@ -123,6 +121,7 @@ public class UserController {
 			System.out.println("Added to data base");
 
 			// message success.......
+
 			session.setAttribute("message", new Message("Your contact is added !! Add more..", "success"));
 
 		} catch (Exception e) {
@@ -285,32 +284,32 @@ public class UserController {
 		return "normal/settings";
 	}
 
-//	// change password..handler
-//	@PostMapping("/change-password")
-//	public String changePassword(@RequestParam("oldPassword") String oldPassword,
-//			@RequestParam("newPassword") String newPassword, Principal principal, HttpSession session) {
-//		System.out.println("OLD PASSWORD " + oldPassword);
-//		System.out.println("NEW PASSWORD " + newPassword);
-//
-//		String userName = principal.getName();
-//		User currentUser = this.userRepository.getUserByUserName(userName);
-//		System.out.println(currentUser.getPassword());
-//
-//		if (this.bCryptPasswordEncoder.matches(oldPassword, currentUser.getPassword())) {
-//			// change the password
-//
-//			currentUser.setPassword(this.bCryptPasswordEncoder.encode(newPassword));
-//			this.userRepository.save(currentUser);
-//			session.setAttribute("message", new Message("Your password is successfully changed..", "success"));
-//
-//		} else {
-//			// error...
-//			session.setAttribute("message", new Message("Please Enter correct old password !!", "danger"));
-//			return "redirect:/user/settings";
-//		}
-//
-//		return "redirect:/user/index";
-//	}
+	// change password..handler
+	@PostMapping("/change-password")
+	public String changePassword(@RequestParam("oldPassword") String oldPassword,
+			@RequestParam("newPassword") String newPassword, Principal principal, HttpSession session) {
+		System.out.println("OLD PASSWORD " + oldPassword);
+		System.out.println("NEW PASSWORD " + newPassword);
+
+		String userName = principal.getName();
+		User currentUser = this.userRepository.getUserByUserName(userName);
+		System.out.println(currentUser.getPassword());
+
+		if (this.bCryptPasswordEncoder.matches(oldPassword, currentUser.getPassword())) {
+			// change the password
+
+			currentUser.setPassword(this.bCryptPasswordEncoder.encode(newPassword));
+			this.userRepository.save(currentUser);
+			session.setAttribute("message", new Message("Your password is successfully changed..", "success"));
+
+		} else {
+			// error...
+			session.setAttribute("message", new Message("Please Enter correct old password !!", "danger"));
+			return "redirect:/user/settings";
+		}
+
+		return "redirect:/user/index";
+	}
 //
 //
 //	//creating order for payment

@@ -1,7 +1,9 @@
 package com.smart.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
@@ -14,13 +16,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank(message = "name Field id required !!")
+    @NotBlank(message = "Name Field is required !!")
     @Size(min = 2,max = 20,message = "min 2 and max 20 characters are allowed !!")
     private String name;
 
     @Column(unique = true)
+    @NotBlank(message = "Email Field is required !!")
+    @Email
     private String email;
 
+    @Pattern(regexp = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$",message = "a password must be eight characters including one uppercase letter, one special character and alphanumeric characters")
     private String password;
 
     private String role;

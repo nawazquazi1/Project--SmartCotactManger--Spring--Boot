@@ -27,7 +27,7 @@ const search = () => {
 
     //sending request to server
 
-    let url = `http://localhost:8282/search/${query}`;
+    let url = `http://localhost:5151/search/${query}`;
 
     fetch(url)
       .then((response) => {

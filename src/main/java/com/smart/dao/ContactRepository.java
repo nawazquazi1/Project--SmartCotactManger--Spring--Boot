@@ -9,6 +9,9 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+/**
+ * @author im_na
+ */
 public interface ContactRepository extends JpaRepository<Contact, Integer> {
 	//pagination...
 	

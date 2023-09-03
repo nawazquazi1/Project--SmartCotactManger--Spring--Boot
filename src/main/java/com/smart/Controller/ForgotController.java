@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Random;
 
+/**
+ * @author im_na
+ */
 @Controller
 public class ForgotController {
 

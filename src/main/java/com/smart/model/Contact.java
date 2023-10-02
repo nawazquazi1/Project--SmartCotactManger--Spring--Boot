@@ -3,7 +3,9 @@ package com.smart.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
-
+/**
+ * @author nawaz
+ */
 @Entity
 @Table(name="CONTACT")
 public class Contact {

@@ -32,16 +32,6 @@ public class MyConfig  {
 		return new BCryptPasswordEncoder();
 	}
 
-//	@Bean
-//	public DataSource dataSource() {
-//		return new EmbeddedDatabaseBuilder()
-//				.setType(EmbeddedDatabaseType.H2)
-//				.addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION)
-//				.build();
-//	}
-
-	/// configure method...
-
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeRequests().requestMatchers("/admin/**").hasRole("ADMIN").requestMatchers("/user/**").hasRole("USER")
